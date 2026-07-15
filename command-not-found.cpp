@@ -39,20 +39,6 @@ const std::list<std::string_view> main_commands = {
 #endif
 };
 
-const std::list<std::string_view> root_commands = {
-#ifdef __aarch64__
-#include "commands-aarch64-termux-root.h"
-#elif defined __arm__
-#include "commands-arm-termux-root.h"
-#elif defined __i686__
-#include "commands-i686-termux-root.h"
-#elif defined __x86_64__
-#include "commands-x86_64-termux-root.h"
-#else
-#error Failed to detect arch
-#endif
-};
-
 const std::list<std::string_view> x11_commands = {
 #ifdef __aarch64__
 #include "commands-aarch64-termux-x11.h"
@@ -182,11 +168,7 @@ int main(int argc, const char *argv[]) {
     return res;
   }
 
-  res = termux_look_for_packages(command, root_commands, &best_distance,
-                                 package_map, "root");
-  if (res != 0) {
-    return res;
-  }
+
 
   res = termux_look_for_packages(command, x11_commands, &best_distance,
                                  package_map, "x11");
