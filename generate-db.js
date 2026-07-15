@@ -151,7 +151,7 @@ async function processRepo(repo, repoPath, arch) {
   var url;
   if (pkg_format === "debian")
     // Fetch the Contents.gz file for the given architecture from the apt mirror
-    url = `${repo.url}/dists/${repo.distribution}/Contents-${arch}`;
+    url = `${repo.url}/dists/${repo.distribution}/${repo.component}/Contents-${arch}`;
   else if (pkg_format === "pacman")
     // Fetch the ${repo}.files file for the given architecture from the pacman mirror
     url = `${repo.url}/${arch}/${repo.distribution}.files`;
